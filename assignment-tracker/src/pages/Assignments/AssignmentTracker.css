@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eef2f7;
+  font-family: Arial, sans-serif;
+}
+
+.tracker-container {
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.tracker-header {
+  margin-bottom: 30px;
+}
+
+.tracker-header h1 {
+  color: #003087;
+  font-size: 2.5rem;
+}
+
+.tracker-header p {
+  color: gray;
+  margin-top: 5px;
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.controls input,
+.controls select {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.controls input {
+  flex: 1;
+  min-width: 250px;
+}
+
+.assignment-list {
+  display: grid;
+  gap: 20px;
+}
+
+.assignment-card {
+  background-color: white;
+  padding: 25px;
+  border-radius: 15px;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+  animation: fadeIn 0.5s ease;
+}
+
+.assignment-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card-top h2 {
+  color: #003087;
+}
+
+.priority {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.high {
+  background-color: #d62828;
+}
+
+.medium {
+  background-color: orange;
+}
+
+.low {
+  background-color: green;
+}
+
+.status-container {
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.status-container select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #f1f1f1;
+}
+
+.status-badge {
+  padding: 8px 14px;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.submitted {
+  background-color: green;
+}
+
+.progress {
+  background-color: orange;
+}
+
+.not-started {
+  background-color: #d62828;
+}
+
+.empty-state {
+  background-color: white;
+  padding: 50px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.empty-state h2 {
+  color: #003087;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .tracker-container {
+    padding: 15px;
+  }
+
+  .tracker-header h1 {
+    font-size: 2rem;
+  }
+
+  .card-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .status-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
