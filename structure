@@ -1,0 +1,132 @@
+MMU-STUDENT-ACADEMIC-COMPANION/ STRUCTURE SAMPLE 
+│
+├── backend/
+│   │
+│   ├── manage.py
+│   ├── requirements.txt
+│   ├── db.sqlite3
+│   │
+│   ├── config/
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── asgi.py
+│   │   └── wsgi.py
+│   │
+│   ├── users/
+│   │   ├── migrations/
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── urls.py
+│   │   ├── views.py
+│   │   └── tests.py
+│   │
+│   ├── assignments/
+│   │   ├── migrations/
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── urls.py
+│   │   ├── views.py
+│   │   └── tests.py
+│   │
+│   ├── timetable/
+│   │   ├── migrations/
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── urls.py
+│   │   ├── views.py
+│   │   └── tests.py
+│   │
+│   ├── results/
+│   │   ├── migrations/
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── urls.py
+│   │   ├── views.py
+│   │   └── tests.py
+│   │
+│   └── notifications/
+│       ├── migrations/
+│       ├── __init__.py
+│       ├── admin.py
+│       ├── apps.py
+│       ├── models.py
+│       ├── serializers.py
+│       ├── urls.py
+│       ├── views.py
+│       └── tests.py
+│
+├── frontend/
+│   │
+│   ├── public/
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   └── manifest.json
+│   │
+│   ├── src/
+│   │   │
+│   │   ├── assets/
+│   │   │   ├── images/
+│   │   │   ├── icons/
+│   │   │   └── fonts/
+│   │   │
+│   │   ├── components/
+│   │   │   ├── Navbar/
+│   │   │   ├── Sidebar/
+│   │   │   ├── Cards/
+│   │   │   ├── Buttons/
+│   │   │   ├── Charts/
+│   │   │   └── Modals/
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── Dashboard/
+│   │   │   ├── Assignments/
+│   │   │   ├── Timetable/
+│   │   │   ├── Results/
+│   │   │   ├── Notifications/
+│   │   │   ├── Login/
+│   │   │   └── Onboarding/
+│   │   │
+│   │   ├── services/
+│   │   │   ├── api.js
+│   │   │   └── authService.js
+│   │   │
+│   │   ├── context/
+│   │   │   ├── AuthContext.js
+│   │   │   └── ThemeContext.js
+│   │   │
+│   │   ├── styles/
+│   │   │   ├── global.css
+│   │   │   ├── variables.css
+│   │   │   └── responsive.css
+│   │   │
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   └── routes.js
+│   │
+│   ├── package.json
+│   ├── package-lock.json
+│   └── README.md
+│
+├── docs/
+│   ├── research/
+│   ├── wireframes/
+│   ├── usability-testing/
+│   ├── figma-designs/
+│   └── report/
+│
+├── .gitignore
+├── README.md
+└── LICENSE
