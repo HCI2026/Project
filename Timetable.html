@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Timetable</title>
+  <link rel="stylesheet" href="Timetable.css" />
+</head>
+<body>
+
+  <h1>My Timetable</h1>
+
+ <!-- Tab buttons -->
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('daily')">Daily</button>
+    <button class="tab" onclick="showTab('weekly')">Weekly</button>
+  </div>
+
+  <!-- Daily view -->
+  <div id="daily" class="view active">
+    <div class="days">
+      <button onclick="showDay('monday')" class="day-btn active">Mon</button>
+      <button onclick="showDay('tuesday')" class="day-btn">Tue</button>
+      <button onclick="showDay('wednesday')" class="day-btn">Wed</button>
+      <button onclick="showDay('thursday')" class="day-btn">Thu</button>
+      <button onclick="showDay('friday')" class="day-btn">Fri</button>
+    </div>
+    <div id="day-content"></div>
+  </div>
+
+ <!--Weekly view -->
+  <div id="weekly" class="view">
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+        </tr>
+      </thead>
+      <tbody id="weekly-body"></tbody>
+    </table>
+  </div>
+
+  <script src="Timetable.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+/* Basic page styling */
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f4ff;
+  padding: 20px;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #5b7be9;
+  margin-bottom: 20px;
+}
+
+/* Tab buttons */
+.tabs {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 8px 24px;
+  border: 2px solid #5b7be9;
+  background: white;
+  color: #5b7be9;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 0 5px;
+  font-size: 14px;
+}
+
+.tab.active {
+  background: #5b7be9;
+  color: white;
+}
+
+/* Show/hide views */
+.view { display: none; }
+.view.active { display: block; }
+
+/* Day buttons */
+.days {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.day-btn {
+  padding: 6px 16px;
+  border: 2px solid #ccc;
+  background: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.day-btn.active {
+  border-color: #5b7be9;
+  color: #5b7be9;
+  background: #eef1ff;
+}
+
+/* Each class card */
+.class-card {
+  background: white;
+  border-left: 4px solid #5b7be9;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.class-card .time {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.class-card .subject {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.class-card .venue {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.class-card .type {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #eef1ff;
+  color: #5b7be9;
+  margin-top: 6px;
+}
+
+/* Weekly table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background: #5b7be9;
+  color: white;
+  padding: 10px;
+  font-size: 13px;
+  text-align: center;
+}
+
+td {
+  border: 1px solid #e0e0e0;
+  padding: 8px;
+  font-size: 12px;
+  vertical-align: top;
+  text-align: center;
+  min-width: 80px;
+}
+
+/* Filled class cell in weekly view */
+td.has-class {
+  background: #eef1ff;
+  color: #333;
+  border-radius: 6px;
+}
