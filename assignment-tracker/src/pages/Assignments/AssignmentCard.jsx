@@ -1,160 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 import "./AssignmentTracker.css";
-import AssignmentCard from "./AssignmentCard";
 
-function AssignmentTracker() {
+const statusClasses = {
+  Submitted: "submitted",
+  "In Progress": "progress",
+  "Not Started": "not-started",
+};
 
-  const initialAssignments = [
-    {
-      id: 1,
-      title: "HCI Group Report",
-      course: "Human Computer Interaction",
-      deadline: "2026-05-20",
-      priority: "High",
-      status: "In Progress",
-    },
-
-    {
-      id: 2,
-      title: "Database Assignment",
-      course: "Database Systems",
-      deadline: "2026-05-24",
-      priority: "Medium",
-      status: "Not Started",
-    },
-
-    {
-      id: 3,
-      title: "React Project",
-      course: "Web Development",
-      deadline: "2026-05-28",
-      priority: "Low",
-      status: "Submitted",
-    },
-  ];
-
-  const [assignments, setAssignments] = useState(initialAssignments);
-
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const [sortType, setSortType] = useState("");
-
-  const handleStatusChange = (id, newStatus) => {
-
-    const updatedAssignments = assignments.map((assignment) =>
-      assignment.id === id
-        ? { ...assignment, status: newStatus }
-        : assignment
-    );
-
-    setAssignments(updatedAssignments);
-  };
-
-  const handleSort = (type) => {
-
-    setSortType(type);
-
-    let sortedAssignments = [...assignments];
-
-    if (type === "deadline") {
-      sortedAssignments.sort(
-        (a, b) => new Date(a.deadline) - new Date(b.deadline)
-      );
-    }
-
-    if (type === "priority") {
-
-      const priorityOrder = {
-        High: 1,
-        Medium: 2,
-        Low: 3,
-      };
-
-      sortedAssignments.sort(
-        (a, b) =>
-          priorityOrder[a.priority] -
-          priorityOrder[b.priority]
-      );
-    }
-
-    if (type === "status") {
-      sortedAssignments.sort((a, b) =>
-        a.status.localeCompare(b.status)
-      );
-    }
-
-    setAssignments(sortedAssignments);
-  };
-
-  const filteredAssignments = assignments.filter((assignment) =>
-    assignment.title
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
-  );
+function AssignmentCard({ assignment, onStatusChange }) {
+  const { id, title, course, deadline, priority, status } = assignment;
+  const priorityClass = priority.toLowerCase();
+  const statusClass = statusClasses[status] || "not-started";
 
   return (
-
-    <div className="tracker-container">
-
-      <div className="tracker-header">
-
+    <div className="assignment-card">
+      <div className="card-top">
         <div>
-          <h1>Assignment Tracker</h1>
-          <p>Manage your assignments efficiently</p>
+          <h2>{title}</h2>
+          <p>{course}</p>
         </div>
-
+        <span className={`priority ${priorityClass}`}>{priority}</span>
       </div>
 
-      <div className="controls">
+      <p>
+        <strong>Deadline:</strong> {deadline}
+      </p>
 
-        <input
-          type="text"
-          placeholder="Search assignments..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-
+      <div className="status-container">
+        <span className={`status-badge ${statusClass}`}>{status}</span>
         <select
-          value={sortType}
-          onChange={(e) => handleSort(e.target.value)}
+          value={status}
+          onChange={(e) => onStatusChange(id, e.target.value)}
         >
-          <option value="">Sort By</option>
-          <option value="deadline">Deadline</option>
-          <option value="priority">Priority</option>
-          <option value="status">Status</option>
+          <option value="Not Started">Not Started</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Submitted">Submitted</option>
         </select>
-
       </div>
-
-      {filteredAssignments.length === 0 ? (
-
-        <div className="empty-state">
-
-          <h2>No Assignments Found</h2>
-          <p>Try searching another assignment.</p>
-
-        </div>
-
-      ) : (
-
-        <div className="assignment-list">
-
-          {filteredAssignments.map((assignment) => (
-
-            <AssignmentCard
-              key={assignment.id}
-              assignment={assignment}
-              onStatusChange={handleStatusChange}
-            />
-
-          ))}
-
-        </div>
-
-      )}
-
     </div>
   );
 }
 
-export default AssignmentTracker;
+export default AssignmentCard;
