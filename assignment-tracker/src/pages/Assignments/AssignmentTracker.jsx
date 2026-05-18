@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import "./AssignmentTracker.css";
 import AssignmentCard from "./AssignmentCard";
 
-function AssignmentTracker({ assignments: propAssignments, onStatusChange }) {
+function AssignmentTracker({ assignments: propAssignments, onStatusChange, onCreateAssignment }) {
   const initialAssignments = [
     {
       id: 1,
@@ -33,6 +33,11 @@ function AssignmentTracker({ assignments: propAssignments, onStatusChange }) {
   const [internalAssignments, setInternalAssignments] = useState(initialAssignments);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortType, setSortType] = useState("");
+  const [title, setTitle] = useState("");
+  const [course, setCourse] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const [priority, setPriority] = useState("Medium");
+  const [feedback, setFeedback] = useState("");
 
   const assignments = propAssignments ?? internalAssignments;
 
@@ -47,6 +52,38 @@ function AssignmentTracker({ assignments: propAssignments, onStatusChange }) {
         assignment.id === id ? { ...assignment, status: newStatus } : assignment
       )
     );
+  };
+
+  const getNextId = () => Math.max(0, ...assignments.map((assignment) => assignment.id)) + 1;
+
+  const handleCreateAssignment = (event) => {
+    event.preventDefault();
+
+    if (!title.trim() || !course.trim() || !deadline) {
+      setFeedback("Please complete all fields before creating an assignment.");
+      return;
+    }
+
+    const newAssignment = {
+      id: getNextId(),
+      title: title.trim(),
+      course: course.trim(),
+      deadline,
+      priority,
+      status: "Not Started",
+    };
+
+    if (onCreateAssignment) {
+      onCreateAssignment(newAssignment);
+    } else {
+      setInternalAssignments((current) => [newAssignment, ...current]);
+    }
+
+    setTitle("");
+    setCourse("");
+    setDeadline("");
+    setPriority("Medium");
+    setFeedback("New assignment created. Use the status dropdown to move it through the available steps.");
   };
 
   const filteredAssignments = useMemo(
@@ -80,10 +117,42 @@ function AssignmentTracker({ assignments: propAssignments, onStatusChange }) {
     <div className="tracker-container">
       <div className="tracker-header">
         <div>
-          <h1>Assignment Tracker</h1>
-          <p>Search, filter, and update assignments directly inside the dashboard.</p>
+          <h1>Create new assignment</h1>
+          <p>Build a task before moving it through the available status steps.</p>
         </div>
       </div>
+
+      <form className="create-form" onSubmit={handleCreateAssignment}>
+        <div className="form-grid">
+          <input
+            type="text"
+            placeholder="Assignment title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Course name"
+            value={course}
+            onChange={(e) => setCourse(e.target.value)}
+          />
+          <input
+            type="date"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+          />
+          <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+            <option value="High">High priority</option>
+            <option value="Medium">Medium priority</option>
+            <option value="Low">Low priority</option>
+          </select>
+        </div>
+
+        <div className="form-footer">
+          <button type="submit">Add assignment</button>
+          {feedback && <p className="form-feedback">{feedback}</p>}
+        </div>
+      </form>
 
       <div className="controls">
         <input

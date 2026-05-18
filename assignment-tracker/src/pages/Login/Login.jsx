@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import "./Login.css";
 
 function Login({ onLogin }) {
-  const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // basic client-side validation
-    if (!email) return alert("Please enter an email");
+    if (!username) return alert("Please enter a username");
     if (!password) return alert("Please enter a password");
-    // call onLogin with a simple user object
-    onLogin && onLogin({ email });
+    onLogin && onLogin({ username });
   };
 
   return (
@@ -19,13 +17,13 @@ function Login({ onLogin }) {
       <form className="auth-card" onSubmit={handleSubmit}>
         <h2>Sign In</h2>
 
-        <label className="auth-label">Email</label>
+        <label className="auth-label">Username</label>
         <input
           className="auth-input"
-          type="email"
-          placeholder="you@example.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="your username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
 
         <label className="auth-label">Password</label>
