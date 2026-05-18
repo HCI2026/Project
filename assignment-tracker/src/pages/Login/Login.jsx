@@ -5,6 +5,7 @@ function Login({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isSignup, setIsSignup] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const generateRandomPassword = (length = 12) => {
     const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
@@ -19,6 +20,11 @@ function Login({ onLogin }) {
   };
 
   const handleGenerate = () => setPassword(generateRandomPassword(12));
+  const handleGenerateAndShow = () => {
+    const pw = generateRandomPassword(12);
+    setPassword(pw);
+    setShowPassword(true);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,14 +65,22 @@ function Login({ onLogin }) {
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           <input
             className="auth-input"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password (min 8 chars)"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             style={{ flex: 1 }}
           />
+          <button
+            type="button"
+            className="password-toggle"
+            onClick={() => setShowPassword((s) => !s)}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
           {isSignup && (
-            <button type="button" className="generate-btn" onClick={handleGenerate}>Generate</button>
+            <button type="button" className="generate-btn" onClick={handleGenerateAndShow}>Generate</button>
           )}
         </div>
 
