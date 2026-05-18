@@ -23,6 +23,59 @@ function Dashboard({ user, page, assignments, onNavigate, onLogout, onStatusChan
     .sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
     .slice(0, 3);
 
+  const pageNotifications = assignments.map((assignment, index) => ({
+    id: `notify-${assignment.id}`,
+    title: assignment.status === "Submitted" ? "Submission confirmed" : assignment.status === "In Progress" ? "Progress update" : "New assignment ready",
+    subject: assignment.title,
+    message:
+      assignment.status === "Submitted"
+        ? `Your ${assignment.course} assignment was submitted on ${assignment.deadline}.`
+        : assignment.status === "In Progress"
+        ? `Keep the ${assignment.course} assignment moving and finish by ${assignment.deadline}.`
+        : `Start the ${assignment.course} task before ${assignment.deadline} to stay on schedule.`,
+    time: `${3 - index}h ago`,
+    type: assignment.status === "Submitted" ? "success" : assignment.status === "In Progress" ? "info" : "alert",
+  }));
+
+  const notifications = [
+    {
+      id: "welcome-notice",
+      title: "Welcome onboard",
+      subject: "Assignment Tracker setup",
+      message: "You can manage deadlines, review statuses, and stay on top of coursework from this center.",
+      time: "Just now",
+      type: "success",
+    },
+    ...pageNotifications,
+  ];
+
+  const onboardingSteps = [
+    {
+      id: "step-1",
+      title: "Connect your first course",
+      detail: "Add the class you’re currently tracking so deadlines stay organized.",
+      completed: true,
+    },
+    {
+      id: "step-2",
+      title: "Create your first assignment",
+      detail: "Add a task to start tracking progress and due dates.",
+      completed: true,
+    },
+    {
+      id: "step-3",
+      title: "Review notifications",
+      detail: "See recent alerts and deadline reminders in the notification center.",
+      completed: false,
+    },
+    {
+      id: "step-4",
+      title: "Use bottom navigation",
+      detail: "Quickly switch pages with the new navigation bar below.",
+      completed: false,
+    },
+  ];
+
   const renderContent = () => {
     if (page === "assignments") {
       return (
@@ -88,7 +141,64 @@ function Dashboard({ user, page, assignments, onNavigate, onLogout, onStatusChan
       );
     }
 
-    if (["timetable", "results", "notifications", "onboarding"].includes(page)) {
+    if (page === "notifications") {
+      return (
+        <section className="page-panel notifications-panel">
+          <div className="panel-header">
+            <div>
+              <h2>Notification center</h2>
+              <p>All assignment alerts, deadline reminders, and task updates in one place.</p>
+            </div>
+          </div>
+
+          <div className="notification-grid">
+            {notifications.map((notification) => (
+              <article key={notification.id} className={`notification-card notification-card--${notification.type}`}>
+                <div className="notification-badge">{notification.type === "success" ? "Good" : notification.type === "info" ? "Info" : "Alert"}</div>
+                <h3>{notification.title}</h3>
+                <p>{notification.message}</p>
+                <small>{notification.time}</small>
+              </article>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    if (page === "onboarding") {
+      return (
+        <section className="page-panel onboarding-panel">
+          <div className="panel-header">
+            <div>
+              <h2>Onboarding guide</h2>
+              <p>Get set up with the core workflow and turn assignments into finished work quickly.</p>
+            </div>
+          </div>
+
+          <div className="onboarding-hero">
+            <div>
+              <strong>Start strong with a simple onboarding path.</strong>
+              <p>Follow the steps below to connect courses, create tasks, and track progress faster.</p>
+            </div>
+            <button onClick={() => onNavigate("assignments")}>Add first assignment</button>
+          </div>
+
+          <div className="onboarding-grid">
+            {onboardingSteps.map((step, index) => (
+              <article key={step.id} className={`onboarding-step ${step.completed ? "completed" : "pending"}`}>
+                <span className="step-index">{index + 1}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.detail}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    if (["timetable", "results"].includes(page)) {
       const item = navItems.find((n) => n.page === page) || { label: page };
       return (
         <section className="page-panel placeholder-panel">
@@ -247,6 +357,20 @@ function Dashboard({ user, page, assignments, onNavigate, onLogout, onStatusChan
         </header>
 
         <div className="app-content">{renderContent()}</div>
+
+        <div className="bottom-nav">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              className={`bottom-nav-item ${page === item.page ? "active" : ""}`}
+              onClick={() => onNavigate(item.page)}
+              title={item.label}
+            >
+              <span className="nav-icon" aria-hidden>{item.icon}</span>
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </div>
       </main>
     </div>
   );
