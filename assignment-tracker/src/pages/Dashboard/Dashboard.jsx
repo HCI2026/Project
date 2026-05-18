@@ -1,5 +1,6 @@
 import React from "react";
 import AssignmentTracker from "../Assignments/AssignmentTracker";
+import Timetable from "../Timetable/Timetable";
 import "./Dashboard.css";
 
 function Dashboard({ user, page, assignments, onNavigate, onLogout, onStatusChange, onAddAssignment }) {
@@ -198,7 +199,11 @@ function Dashboard({ user, page, assignments, onNavigate, onLogout, onStatusChan
       );
     }
 
-    if (["timetable", "results"].includes(page)) {
+    if (page === 'timetable') {
+      return <Timetable />;
+    }
+
+    if (page === 'results') {
       const item = navItems.find((n) => n.page === page) || { label: page };
       return (
         <section className="page-panel placeholder-panel">

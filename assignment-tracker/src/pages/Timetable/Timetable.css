@@ -1,0 +1,71 @@
+/* Timetable styles */
+.timetable-panel {
+  padding: 18px 0;
+}
+
+.timetable-tabs {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0 18px;
+}
+
+.tab {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 8px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.tab.active {
+  background: #c8102e;
+  color: #fff;
+}
+
+.days {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.day-btn {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.day-btn.active {
+  background: #c8102e;
+  color: #fff;
+}
+
+.class-card {
+  background: #fff;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.weekly-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.weekly-table th, .weekly-table td {
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 10px;
+  vertical-align: top;
+}
+
+.time-col {
+  width: 90px;
+  font-weight: 700;
+}
+
+.has-class {
+  background: linear-gradient(90deg, rgba(200,16,46,0.06), #fff);
+}
