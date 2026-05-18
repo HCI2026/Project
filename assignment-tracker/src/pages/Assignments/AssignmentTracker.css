@@ -399,3 +399,47 @@
     padding: 20px;
   }
 }
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 1200;
+  min-width: 260px;
+  max-width: 360px;
+  transition: transform 260ms ease, opacity 260ms ease;
+  transform: translateY(-8px);
+  opacity: 0;
+}
+
+.toast .toast-inner {
+  background: #111;
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  box-shadow: 0 18px 46px rgba(0,0,0,0.28);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toast--success .toast-inner {
+  background: linear-gradient(90deg, #111111, #0f1724);
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.9);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px;
+}

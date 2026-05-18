@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import "./AssignmentTracker.css";
 import AssignmentCard from "./AssignmentCard";
 
@@ -38,6 +38,8 @@ function AssignmentTracker({ assignments: propAssignments, onStatusChange, onCre
   const [deadline, setDeadline] = useState("");
   const [priority, setPriority] = useState("Medium");
   const [feedback, setFeedback] = useState("");
+  const [toast, setToast] = useState({ visible: false, message: "", type: "success" });
+  const toastTimer = useRef(null);
 
   const assignments = propAssignments ?? internalAssignments;
 
@@ -83,7 +85,15 @@ function AssignmentTracker({ assignments: propAssignments, onStatusChange, onCre
     setCourse("");
     setDeadline("");
     setPriority("Medium");
-    setFeedback("New assignment created. Use the status dropdown to move it through the available steps.");
+    // show toast notification for max 7 seconds
+    if (toastTimer.current) {
+      clearTimeout(toastTimer.current);
+    }
+    setToast({ visible: true, message: "Assignment created successfully.", type: "success" });
+    toastTimer.current = setTimeout(() => {
+      setToast((t) => ({ ...t, visible: false }));
+      toastTimer.current = null;
+    }, 7000);
   };
 
   const filteredAssignments = useMemo(
@@ -152,6 +162,15 @@ function AssignmentTracker({ assignments: propAssignments, onStatusChange, onCre
           <button type="submit">Add assignment</button>
           {feedback && <p className="form-feedback">{feedback}</p>}
         </div>
+
+      {toast.visible && (
+        <div className={`toast toast--${toast.type} ${toast.visible ? "show" : ""}`} role="status" aria-live="polite">
+          <div className="toast-inner">
+            <strong>{toast.message}</strong>
+            <button className="toast-close" onClick={() => setToast((t) => ({ ...t, visible: false }))} aria-label="Close">×</button>
+          </div>
+        </div>
+      )}
       </form>
 
       <div className="controls">
