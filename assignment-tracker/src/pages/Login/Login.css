@@ -33,6 +33,27 @@
   font-weight: 600;
 }
 
+.signup-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.generate-btn {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: #111;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.generate-btn:hover {
+  background: rgba(200,16,46,0.06);
+  border-color: rgba(200,16,46,0.12);
+}
+
 .auth-input {
   width: 100%;
   padding: 10px 12px;
