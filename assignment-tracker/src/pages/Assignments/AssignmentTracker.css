@@ -1,4 +1,4 @@
-* {
+﻿* {
   box-sizing: border-box;
 }
 
@@ -8,14 +8,14 @@
 }
 
 .tracker-header {
-  margin-bottom: 28px;
-  animation: slideDown 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 24px;
+  animation: slideDown 450ms ease-out;
 }
 
 @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-18px);
   }
   to {
     opacity: 1;
@@ -24,16 +24,86 @@
 }
 
 .tracker-header h1 {
-  color: #111d3a;
-  font-size: 1.8rem;
-  font-weight: 700;
+  color: #111111;
+  font-size: 1.9rem;
+  font-weight: 800;
   margin: 0;
 }
 
 .tracker-header p {
-  color: #5b6b8f;
-  margin-top: 8px;
+  color: #333333;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.create-form {
+  background: #ffffff;
+  border: 1px solid rgba(200, 16, 46, 0.14);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  border-radius: 24px;
+  margin-bottom: 28px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-grid input,
+.form-grid select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  color: #111111;
   font-size: 0.95rem;
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+  border-color: rgba(200, 16, 46, 0.45);
+  box-shadow: 0 8px 20px rgba(200, 16, 46, 0.12);
+}
+
+.form-grid input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.form-footer {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.form-footer button {
+  background: #c8102e;
+  border: none;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.form-footer button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(200, 16, 46, 0.28);
+}
+
+.form-feedback {
+  color: #c8102e;
+  font-size: 0.95rem;
+  margin: 0;
+  flex: 1;
 }
 
 .controls {
@@ -41,13 +111,13 @@
   gap: 16px;
   margin-bottom: 28px;
   flex-wrap: wrap;
-  animation: slideUp 500ms ease 100ms both;
+  animation: slideUp 450ms ease 120ms both;
 }
 
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -58,21 +128,19 @@
 .controls input,
 .controls select {
   padding: 14px 16px;
-  border: 1.5px solid rgba(102, 123, 255, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 14px;
   outline: none;
-  background-color: #fff;
-  color: #111d3a;
+  background-color: #ffffff;
+  color: #111111;
   font-size: 0.95rem;
-  transition: all 240ms cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
 }
 
 .controls input:focus,
 .controls select:focus {
-  border-color: rgba(102, 123, 255, 0.4);
-  box-shadow: 0 8px 28px rgba(102, 123, 255, 0.12);
-  transform: translateY(-1px);
+  border-color: rgba(200, 16, 46, 0.4);
+  box-shadow: 0 8px 24px rgba(200, 16, 46, 0.12);
 }
 
 .controls input {
@@ -81,19 +149,19 @@
 }
 
 .controls input::placeholder {
-  color: #a8b8dd;
+  color: rgba(0, 0, 0, 0.45);
 }
 
 .assignment-list {
   display: grid;
   gap: 18px;
-  animation: staggerIn 600ms ease 200ms both;
+  animation: staggerIn 560ms ease 180ms both;
 }
 
 @keyframes staggerIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -102,21 +170,24 @@
 }
 
 .assignment-card {
-  background: linear-gradient(135deg, #ffffff, #fafbff);
+  background: #ffffff;
   padding: 28px 30px;
   border-radius: 22px;
-  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-  border: 1.5px solid rgba(102, 123, 255, 0.08);
+  transition: all 260ms ease;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   position: relative;
-  overflow: hidden;
-  animation: cardIn 500ms ease;
+}
+
+.assignment-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
 @keyframes cardIn {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -127,67 +198,38 @@
 .assignment-card::before {
   content: "";
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(102, 123, 255, 0.08), transparent);
+  top: -40%;
+  right: -40%;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(200, 16, 46, 0.12), transparent);
   border-radius: 50%;
   transition: all 400ms ease;
 }
 
-.assignment-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(102, 123, 255, 0.15);
-  border-color: rgba(102, 123, 255, 0.2);
-}
-
 .assignment-card:hover::before {
-  top: -20%;
-  right: -20%;
-}
-
-.card-top {
-  content: "";
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(102, 123, 255, 0.08), transparent);
-  border-radius: 50%;
-  transition: all 400ms ease;
-}
-
-.assignment-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(102, 123, 255, 0.15);
-  border-color: rgba(102, 123, 255, 0.2);
-}
-
-.assignment-card:hover::before {
-  top: -20%;
-  right: -20%;
+  top: -18%;
+  right: -18%;
 }
 
 .card-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   gap: 12px;
 }
 
 .card-top h2 {
-  color: #111d3a;
+  color: #111111;
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
 }
 
 .card-top p {
-  color: #5b6b8f;
-  font-size: 0.9rem;
+  color: #444444;
+  font-size: 0.95rem;
   margin: 6px 0 0;
 }
 
@@ -200,35 +242,35 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   min-width: fit-content;
-  transition: all 240ms ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 180ms ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .priority.high {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
+  background: #c8102e;
 }
 
 .priority.medium {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: #a00d26;
 }
 
 .priority.low {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: #7a0618;
 }
 
 .priority:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .assignment-card > p {
-  color: #5b6b8f;
-  font-size: 0.9rem;
-  margin: 12px 0;
+  color: #444444;
+  font-size: 0.95rem;
+  margin: 14px 0;
 }
 
 .assignment-card strong {
   font-weight: 700;
-  color: #111d3a;
+  color: #111111;
 }
 
 .status-container {
@@ -241,268 +283,73 @@
 }
 
 .status-badge {
-  padding: 8px 16px;
-  border-radius: 18px;
+  padding: 10px 18px;
+  border-radius: 20px;
   color: white;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .status-badge.submitted {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: #111111;
 }
 
 .status-badge.progress {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3); }
-  50% { box-shadow: 0 4px 24px rgba(59, 130, 246, 0.5); }
+  background: #c8102e;
 }
 
 .status-badge.not-started {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
+  background: #333333;
 }
 
 .status-container select {
-  padding: 10px 14px;
-  border-radius: 12px;
-  border: 1.5px solid rgba(102, 123, 255, 0.15);
-  background-color: #f9fafb;
-  color: #111d3a;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #111111;
   font-weight: 600;
   cursor: pointer;
-  transition: all 240ms ease;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
 }
 
 .status-container select:hover,
 .status-container select:focus {
-  border-color: rgba(102, 123, 255, 0.3);
-  background-color: #fff;
-  box-shadow: 0 6px 20px rgba(102, 123, 255, 0.12);
+  border-color: rgba(200, 16, 46, 0.35);
+  box-shadow: 0 10px 22px rgba(200, 16, 46, 0.14);
 }
 
 .empty-state {
-  background: linear-gradient(135deg, #f9fafb, #f5f7fb);
-  padding: 60px 40px;
+  background: #ffffff;
+  padding: 48px 36px;
   border-radius: 24px;
   text-align: center;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-  border: 1.5px dashed rgba(102, 123, 255, 0.2);
-  animation: fadeIn 500ms ease;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  border: 1px dashed rgba(200, 16, 46, 0.25);
+  animation: fadeIn 450ms ease;
 }
 
 .empty-state h2 {
-  color: #111d3a;
+  color: #111111;
   margin: 0 0 12px;
   font-size: 1.4rem;
   font-weight: 700;
 }
 
 .empty-state p {
-  color: #5b6b8f;
+  color: #444444;
   margin: 0;
   font-size: 0.95rem;
 }
 
-@media (max-width: 768px) {
-  .controls {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .controls input,
-  .controls select {
-    width: 100%;
-  }
-
-  .card-top {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .status-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .status-container select {
-    width: 100%;
-  }
-
-  .assignment-card {
-    padding: 20px 22px;
-  }
-}
-
-@media (max-width: 480px) {
-  .tracker-header h1 {
-    font-size: 1.4rem;
-  }
-
-  .card-top h2 {
-    font-size: 1.05rem;
-  }
-
-  .priority {
-    padding: 6px 12px;
-    font-size: 0.75rem;
-  }
-
-  .status-badge {
-    padding: 6px 12px;
-    font-size: 0.75rem;
-  }
-
-  .status-container select {
-    padding: 9px 12px;
-    font-size: 0.9rem;
-  }
-
-  .empty-state {
-    padding: 40px 20px;
-  }
-
-  .empty-state h2 {
-    font-size: 1.2rem;
-  }
-}
-
-.controls {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-
-.controls input,
-.controls select {
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.controls input {
-  flex: 1;
-  min-width: 250px;
-}
-
-.assignment-list {
-  display: grid;
-  gap: 20px;
-}
-
-.assignment-card {
-  background-color: white;
-  padding: 25px;
-  border-radius: 15px;
-  transition: 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
-  animation: fadeIn 0.5s ease;
-}
-
-.assignment-card:hover {
-  transform: translateY(-5px);
-}
-
-.card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.card-top h2 {
-  color: #003087;
-}
-
-.priority {
-  padding: 6px 12px;
-  border-radius: 20px;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.high {
-  background-color: #d62828;
-}
-
-.medium {
-  background-color: orange;
-}
-
-.low {
-  background-color: green;
-}
-
-.status-container {
-  margin-top: 20px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.status-container select {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background-color: #f1f1f1;
-}
-
-.status-badge {
-  padding: 8px 14px;
-  border-radius: 20px;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.submitted {
-  background-color: green;
-}
-
-.progress {
-  background-color: orange;
-}
-
-.not-started {
-  background-color: #d62828;
-}
-
-.empty-state {
-  background-color: white;
-  padding: 50px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.empty-state h2 {
-  color: #003087;
-  margin-bottom: 10px;
-}
-
 @keyframes fadeIn {
-
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -510,23 +357,45 @@
 }
 
 @media (max-width: 768px) {
-
-  .tracker-container {
-    padding: 15px;
+  .form-grid,
+  .controls {
+    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
+  .create-form,
+  .assignment-card {
+    padding: 22px;
+  }
+
+  .status-container,
+  .form-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .status-container select,
+  .create-form button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
   .tracker-header h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
-  .card-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  .card-top h2 {
+    font-size: 1.05rem;
   }
 
-  .status-container {
-    flex-direction: column;
-    align-items: flex-start;
+  .priority,
+  .status-badge {
+    padding: 7px 14px;
+    font-size: 0.78rem;
+  }
+
+  .create-form {
+    padding: 20px;
   }
 }

@@ -52,6 +52,16 @@ function App() {
     );
   };
 
+  const handleAddAssignment = (newAssignment) => {
+    setAssignments((current) => [
+      ...current,
+      {
+        id: current.length ? Math.max(...current.map((assignment) => assignment.id)) + 1 : 1,
+        ...newAssignment,
+      },
+    ]);
+  };
+
   if (!user) {
     return <Login onLogin={handleLogin} />;
   }
@@ -64,6 +74,7 @@ function App() {
       onNavigate={setPage}
       onLogout={handleLogout}
       onStatusChange={handleStatusChange}
+      onAddAssignment={handleAddAssignment}
     />
   );
 }
